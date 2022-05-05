@@ -48,9 +48,16 @@ if (!preg_match('/\.(gif|jpe?g|png)/i', $srcImagePath)) {
     throw new ErrorException("The file specified does not appear to be an image");
 }
 
-$imagick = new Imagick(__DIR__ . '/' . $srcImagePath);
+$srcImageFileName = preg_replace('/^(?:.+\/)?([^\/]+)$/i', '$1', $srcImagePath);
+if (false === strpos($srcImagePath, "/")) {
+    $srcImagePath = __DIR__ . '/';
+} else {
+    $srcImagePath = preg_replace('/^(.+\/)?(?:[^\/]+)$/i', '$1', $srcImagePath);
+}
 
-$sliceBaseName = preg_replace('/^(?:.+\/)?([^\/]+)\.(?:gif|jpe?g|png)/i', '$1', $srcImagePath);
+$imagick = new Imagick($srcImagePath . $srcImageFileName);
+
+$sliceBaseName = preg_replace('/^(.+)\.(?:gif|jpe?g|png)$/i', '$1', $srcImageFileName);
 $srcImageWidth = $imagick->getImageWidth();
 $srcImageHeight = $imagick->getImageHeight();
 $sliceWidth = $srcImageWidth / $columns;
@@ -63,6 +70,6 @@ for ($row = 0; $row < $rows; $row++) {
             (int) ($col * $sliceWidth),
             (int) ($row * $sliceHeight)
         );
-        $new_imagick->writeImage(__DIR__ . "/{$sliceBaseName}_slice_r{$row}_c$col.png");
+        $new_imagick->writeImage($srcImagePath . "{$sliceBaseName}_slice_r{$row}_c$col.png");
     }
 }

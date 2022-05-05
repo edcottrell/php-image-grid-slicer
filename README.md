@@ -30,7 +30,8 @@ Files are automatically named as *BASE\_FILE\_NAME*\_slice\_r\_*row*\_c\_*column
 My plans for this library depend on what users ask for, any pull requests I receive, and my own needs. In general, though, I'll likely prioritize the following features:
 
 - wrap this up in a function so that it can be used as either a command line tool or an add-in in other projects
-- specify uneven row and column sizes
+- specify a different output directory (right now, it saves slices to the same directory as the original image)
 - specify a different output file naming format (prefix and suffix, like `My Image 7` for sequentially-numbered slices)
 - specify an output file format (.jpeg to .png, for example)
+- specify uneven row and column sizes
 - specify resolutions for output files
