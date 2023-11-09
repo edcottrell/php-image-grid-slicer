@@ -44,6 +44,11 @@ The tool will throw `ErrorException`s for invalid parameters or if the file spec
 
 My plans for this library depend on what users ask for, any pull requests I receive, and my own needs. In general, though, I'll likely prioritize the following features:
 
+- unit and other testing
+- support for libraries in addition to [Imagick](https://github.com/Imagick/imagick):
+  - [GD](https://www.php.net/manual/en/book.image.php)
+  - [Gmagick](https://www.php.net/manual/en/book.gmagick.php)
+  - [libvips](https://github.com/libvips/php-vips)
 - specify a different output directory (right now, it saves slices to the same directory as the original image)
 - specify a different output file naming format (prefix and suffix, like `My Image 7` for sequentially-numbered slices)
 - specify an output file format (.jpeg to .png, for example)
